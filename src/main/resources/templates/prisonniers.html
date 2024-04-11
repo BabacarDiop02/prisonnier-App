@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>Prisonner</title>
+</head>
+<body>
+    <div class="p-3 m-3">
+        <div class="card">
+            <div class="card-header">
+                La liste des Prisonniers
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th><th>NOM</th><th>PRENOM</th><th>NOM PRISON</th><th>NUMERO CELLULE</th><th>CONDANNATION</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="p:${listPrisoniers}">
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.nom}"></td>
+                        <td th:text="${p.prenom}"></td>
+                        <td th:text="${p.nomPrisons}"></td>
+                        <td th:text="${p.numeroCellule}"></td>
+                        <td th:text="${p.condannation == true ? 'OUI' : 'NON'}"></td>
+                        <td>
+                            <a onclick="return confirm('Est-t vous sure ?')" class="btn btn-danger" th:href="@{/deletePrisonnier(id=${p.id})}">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
